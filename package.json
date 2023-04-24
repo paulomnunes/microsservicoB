@@ -1,0 +1,17 @@
+{
+  "name": "MicrosserviçoB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js localhost 3000"
+  },
+  "author": "Paulo Marcos Nunes",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.4",
+    "nodemon": "^2.0.22"
+  }
+}
