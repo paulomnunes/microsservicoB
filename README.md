@@ -38,10 +38,18 @@ Aqui estão os endpoints disponíveis no microsserviço:
 ## Estrutura do projeto
 O projeto está organizado da seguinte maneira:
 
-`index.js`: Arquivo principal do projeto, responsável por iniciar o servidor e configurar as rotas.
+`index.js`: Arquivo principal que inicia o servidor e define as rotas.
 
-`routes/dadosScoreRoutes.js`: Arquivo que define as rotas relacionadas aos dados de score.
+`db/conn.js`: Arquivo que conecta ao banco de dados MongoDB.
 
-`models/dadosScore.js`: Arquivo que define o modelo de dados de score.
+`routes/router.js`: Arquivo que define as rotas gerais do projeto.
 
-`package.json`: Arquivo que contém as dependências do projeto e os scripts disponíveis.
+`routes/dadosScoreRouter.js`: Arquivo que define as rotas específicas para manipulação dos dados de score.
+
+`models/dadosScore.js`: Arquivo que define o modelo de dados de score para ser utilizado no MongoDB.
+
+`controllers/dadosScoreController.js`: Arquivo que contém funções para realizar o CRUD dos dados de score no MongoDB.
+
+`postman_collection/Microsserviço B.postman_collection.json`: Arquivo para importar a collection do Postman e realizar testes na API.
+
+`package.json`: Arquivo que contém informações do projeto, dependências e scripts disponíveis.
