@@ -1,5 +1,5 @@
 {
-  "name": "microsserviçob",
+  "name": "microsservico-b",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "author": "Paulo Marcos Nunes",
   "license": "MIT",
   "dependencies": {
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.4",

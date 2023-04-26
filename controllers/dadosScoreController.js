@@ -2,11 +2,6 @@ const DadosScoreModel = require("../models/DadosScore");
 
 const dadosScoreController = {
     create: async (req, res) => {
-        console.log(req.body.cpf)
-        console.log(req.body.idade)
-        console.log(req.body.listaDeBens)
-        console.log(req.body.endereco)
-        console.log(req.body.fontesDeRenda)
         try {
             const dadosScore = {
                 cpf: req.body.cpf,
@@ -15,7 +10,6 @@ const dadosScoreController = {
                 endereco: req.body.endereco,
                 fontesDeRenda: req.body.fontesDeRenda,
             };
-            console.log(dadosScore)
             if (!dadosScore.cpf) {
                 return res.status(400).json({ message: 'O CPF é obrigatório' });
             }
@@ -30,7 +24,11 @@ const dadosScoreController = {
 
             res.status(201).json({ response, msg: "Dados do score criado com sucesso!" });
         } catch (error) {
-            res.status(500).json({ message: 'Erro ao criar os dados do score.', error })
+            if (error.code === 11000 && error.keyPattern.cpf) {
+                res.status(409).json({ message: 'CPF já cadastrado.' })
+            } else {
+                res.status(500).json({ message: 'Erro ao cadastrar os dados do score.', error })
+            }
         }
     },
     getAll: async (req, res) => {
@@ -60,7 +58,6 @@ const dadosScoreController = {
     delete: async (req, res) => {
         try {
             const id = req.params.id;
-
             const dadosScore = await DadosScoreModel.findById(id);
 
             if (!dadosScore) {
@@ -72,34 +69,51 @@ const dadosScoreController = {
 
             res.status(200).json({ deletedDadosScore, msg: "Dados do score excluído com sucesso!" });
         } catch (error) {
+            if (error.kind === 'ObjectId') {
+                return res.status(400).json({ message: 'ID inválido.' });
+            }
             res.status(500).json({ message: 'Erro ao excluir os dados do ID informado.', error })
         }
     },
     update: async (req, res) => {
+        const id = req.params.id
+        const { cpf, idade, listaDeBens, endereco, fontesDeRenda } = req.body
+        const dadosScore = {};
+
+        if (cpf) {
+            dadosScore.cpf = cpf;
+        }
+
+        if (idade) {
+            dadosScore.idade = idade;
+        }
+
+        if (listaDeBens) {
+            dadosScore.listaDeBens = listaDeBens;
+        }
+
+        if (endereco) {
+            dadosScore.endereco = endereco;
+        }
+
+        if (fontesDeRenda) {
+            dadosScore.fontesDeRenda = fontesDeRenda;
+        }
+
         try {
-            const id = req.params.id;
+            const update = await DadosScoreModel.updateOne({ _id: id }, dadosScore);
 
-            const dadosScore = {
-                cpf: req.body.cpf,
-                idade: req.body.idade,
-                listaDeBens: req.body.listaDeBens,
-                endereco: req.body.endereco,
-                fontesDeRenda: req.body.fontesDeRenda,
-            };
 
-            const updateDadosScore = await DadosScoreModel.findByIdAndUpdate(id, dadosScore);
-
-            if (!updateDadosScore) {
-                res.status(404).json({ msg: "Dados do score não encontrado" });
-                return;
+            if (update.nModified === 0) {
+                return res.status(404).json({ message: 'Não foram encontrados dados correspondentes ao ID informado.' });
             }
 
-            res.status(200).json({ dadosScore, msg: "Dados do score atualizado com sucesso" });
+            res.status(200).json({ dadosScore, message: 'Dados do score atualizados com sucesso.' });
         } catch (error) {
             if (error.kind === 'ObjectId') {
                 return res.status(400).json({ message: 'ID inválido.' });
             }
-            res.status(500).json({ message: 'Erro ao atualizar os dados do ID informado.', error })
+            res.status(500).json({ message: 'Erro ao atualizar os dados do ID informado.', error });
         }
     }
 }

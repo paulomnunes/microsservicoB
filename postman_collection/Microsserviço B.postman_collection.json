@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a7f0506d-0f30-4d63-81b7-b127f9466a46",
+		"_postman_id": "c39d8e42-641a-4bad-a54f-4747e5c6698d",
 		"name": "Microsserviço B",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21910288"
@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/5151513",
+					"raw": "{{URL}}/",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
-						"5151513"
+						""
 					]
 				}
 			},
@@ -53,7 +53,16 @@
 			"name": "Retornar todos os dados score",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/dadosScore",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"dadosScore"
+					]
+				}
 			},
 			"response": []
 		},
@@ -61,7 +70,23 @@
 			"name": "Retornar dados score por ID",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/dadosScore/:id",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"dadosScore",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -71,13 +96,19 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/dadosScore/",
+					"raw": "{{URL}}/dadosScore/:id",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"dadosScore",
-						""
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
 					]
 				}
 			},
@@ -87,7 +118,23 @@
 			"name": "Remover dados score",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/dadosScore/:id",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"dadosScore",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
 			},
 			"response": []
 		}
