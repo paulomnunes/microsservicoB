@@ -86,7 +86,7 @@ const dadosScoreController = {
 
         if (cpf) {
 
-            if (!cpfUtil.isValid(dadosScore.cpf)) {
+            if (!cpfUtil.isValid(cpf)) {
                 return res.status(400).json({ message: 'O CPF é inválido' });
             }
 
