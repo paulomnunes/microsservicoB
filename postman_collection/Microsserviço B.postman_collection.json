@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c39d8e42-641a-4bad-a54f-4747e5c6698d",
+		"_postman_id": "d4dcaf81-c610-493e-915a-2f9ad9514be1",
 		"name": "Microsserviço B",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21910288"
@@ -30,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cpf\":\"840.877.710-71\",\r\n    \"listaDeBens\":[\"imóvel\",\"carro\"],\r\n    \"fontesDeRenda\":[\"salário\",\"aluguel\"],\r\n    \"idade\": 45,\r\n    \"endereco\": \"Rua Teste, 123\"\r\n}",
+					"raw": "{\r\n    \"cpf\":\"577.436.760-64\",\r\n    \"listaDeBens\":[\"imóvel\",\"carro\"],\r\n    \"fontesDeRenda\":[\"salário\",\"aluguel\"],\r\n    \"idade\": 45,\r\n    \"endereco\": \"Rua Teste, 123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,20 +95,23 @@
 			"request": {
 				"method": "PATCH",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"listaDeBens\": \"imóvel,carro\",\r\n     \"idade\": 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{URL}}/dadosScore/:id",
+					"raw": "{{URL}}/dadosScore/644956f7a34aaa7b346193c1",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"dadosScore",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
+						"644956f7a34aaa7b346193c1"
 					]
 				}
 			},
@@ -117,32 +120,46 @@
 		{
 			"name": "Remover dados score",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/dadosScore/:id",
+					"raw": "{{URL}}/dadosScore/64494bd9c4096572d56c9cd4",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"dadosScore",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
+						"64494bd9c4096572d56c9cd4"
 					]
 				}
 			},
 			"response": []
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "URL",
-			"value": "http://localhost:3000"
+			"value": "http://localhost:4000"
 		}
 	]
 }

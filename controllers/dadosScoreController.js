@@ -1,5 +1,5 @@
 const DadosScoreModel = require("../models/DadosScore");
-
+const cpfUtil = require('cpf');
 const dadosScoreController = {
     create: async (req, res) => {
         try {
@@ -10,8 +10,12 @@ const dadosScoreController = {
                 endereco: req.body.endereco,
                 fontesDeRenda: req.body.fontesDeRenda,
             };
+
             if (!dadosScore.cpf) {
                 return res.status(400).json({ message: 'O CPF é obrigatório' });
+            }
+            if (!cpfUtil.isValid(dadosScore.cpf)) {
+                return res.status(400).json({ message: 'O CPF é inválido' });
             }
             if (!dadosScore.idade) {
                 return res.status(400).json({ message: 'A idade é obrigatória' });
@@ -81,6 +85,11 @@ const dadosScoreController = {
         const dadosScore = {};
 
         if (cpf) {
+
+            if (!cpfUtil.isValid(dadosScore.cpf)) {
+                return res.status(400).json({ message: 'O CPF é inválido' });
+            }
+
             dadosScore.cpf = cpf;
         }
 
@@ -102,7 +111,6 @@ const dadosScoreController = {
 
         try {
             const update = await DadosScoreModel.updateOne({ _id: id }, dadosScore);
-
 
             if (update.nModified === 0) {
                 return res.status(404).json({ message: 'Não foram encontrados dados correspondentes ao ID informado.' });

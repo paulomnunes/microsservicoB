@@ -12,6 +12,6 @@ const routes = require("./routes/router");
 
 app.use("/", routes);
 
-app.listen(3000, function () {
-    console.log("Servidor rodando na porta 3000");
+app.listen(4000, function () {
+    console.log("Servidor rodando na porta 4000");
 });
